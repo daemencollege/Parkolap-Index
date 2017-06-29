@@ -250,28 +250,28 @@ body {
       <div class="container">
         <div class="row">
           <div class="w3-col">
-				<div class="col-sm-12 col-md-6 col-lg-3" ondragover="event.preventDefault()">
-					<div class="w3-hover-shadow w3-margin w3-padding w3-blue hover-pointer" draggable="true" >
-						hey
+				<div class="col-sm-12 col-md-6 col-lg-3" ondrop="drop(event)" ondragover="allowDrop(event)" style="border: 1px solid black; " > 
+					<div id="1" class="w3-hover-shadow w3-margin w3-padding w3-blue hover-pointer" draggable="true" ondragstart="drag(event)" >
+						hey1
 					</div>
 				</div>
 
-				<div class="col-sm-12 col-md-6 col-lg-3" ondragover="event.preventDefault()">
-					<div class="w3-hover-shadow w3-margin w3-padding w3-blue hover-pointer" draggable="true">
-						hey
+				<div class="col-sm-12 col-md-6 col-lg-3" ondrop="drop(event)" ondragover="allowDrop(event)" style="border: 1px solid black; " >
+					<div id="2" class="w3-hover-shadow w3-margin w3-padding w3-blue hover-pointer" draggable="true" ondragstart="drag(event)" >
+						hey2
 					</div>
 				</div>
 
-				<div class="col-sm-12 col-md-6 col-lg-3" ondragover="event.preventDefault()">
-					<div class="w3-hover-shadow w3-margin w3-padding w3-blue hover-pointer" draggable="true">
-						hey
+				<div class="col-sm-12 col-md-6 col-lg-3" ondrop="drop(event)" ondragover="allowDrop(event)" style="border: 1px solid black; " >
+					<div id="3" class="w3-hover-shadow w3-margin w3-padding w3-blue hover-pointer" draggable="true" ondragstart="drag(event)" >
+						hey3
 					</div>
 				</div>
 
-				<div class="col-sm-12 col-md-6 col-lg-3" ondragover="event.preventDefault()">
-					<!--<div class="w3-hover-shadow w3-margin w3-padding w3-blue hover-pointer" draggable="true">
-						hey
-					</div>-->
+				<div class="col-sm-12 col-md-6 col-lg-3" ondrop="drop(event)" ondragover="allowDrop(event)" style="border: 1px solid black; " >
+					<div id="4" class="w3-hover-shadow w3-margin w3-padding w3-blue hover-pointer" draggable="true" ondragstart="drag(event)" >
+						
+					</div>
 				</div>
 				
 		  </div>
@@ -279,7 +279,9 @@ body {
       </div>
     </div>
   </div><!-- End content -->
+  
   <script type="text/javascript">
+  
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
@@ -288,6 +290,18 @@ body {
 	function allowDrop(ev) {
 		ev.preventDefault();
 	}
+
+	function drag(ev) {
+		ev.dataTransfer.setData("text", ev.target.id);
+	}
+
+	function drop(ev) {
+		ev.preventDefault();
+		var data = ev.dataTransfer.getData("text");
+		ev.target.appendChild(document.getElementById(data));
+	}
+	
   </script>
+  
 </body>
 </html>
