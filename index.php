@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 
+<?php
+include("database.php"); 
+?>
+
 <html>
 <head>
   <title>Menu</title>
@@ -14,6 +18,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous" type="text/javascript">
 </script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js" type="text/javascript"></script>
 <script src="assets/jquery/gridly/javascripts/jquery.gridly.js" type="text/javascript"></script>
@@ -198,16 +204,6 @@ body {
         margin-right: 0;
     }
   }
-  
-  
-	.hover-pointer:hover {
-		cursor: pointer;
-	}
-	
-.draggable{
-	-webkit-transform: translate(0px, 0px);
-		transform: translate(0px, 0px);
-}
 
   </style>
 </head>
@@ -238,7 +234,7 @@ body {
     </div>
   </nav>
 
-  <div id="wrapper">
+<div id="wrapper">
     <!-- Sidebar -->
 
     <div id="sidebar-wrapper">
@@ -258,86 +254,54 @@ body {
         </div>
       </div>
 
-      <div class="container">
-        <div class="row">
-          <div class="w3-col">
-				<div id="hold-1" class="col-sm-12 col-md-6 col-lg-3 full" ondrop="drop(event, this.id)" ondragover="allowDrop(event, this.id)" style="border: 1px solid black; height: 70px; " > 
-					<div id="1" class="w3-hover-shadow w3-margin w3-padding w3-blue hover-pointer draggable" ondragstart="drag(event)" >
-						hey1
-					</div>
+		<div class="container">
+			<div class="row">
+				<div class="gridly">
+					<div class="brick small col-xs-6 col-sm-3" style="left: 0; top: 0; " ></div>
+					<div class="brick small col-xs-6 col-sm-3" style="left: 480; top: 0; " ></div>
+					<div class="brick large col-xs-12 col-sm-6" style="left: 640; top: 0; " ></div>
+					<div class="brick small col-xs-6 col-sm-3" style="left: 0; top: 160; " ></div>
+					<div class="brick small col-xs-6 col-sm-3" style="left: 480; top: 160; " ></div>
+					<div class="brick large col-xs-12 col-sm-6" style="left: 160; top: 0; " ></div>
 				</div>
-
-				<div id="hold-2" class="col-sm-12 col-md-6 col-lg-3 full" ondrop="drop(event, this.id)" ondragover="allowDrop(event, this.id)" style="border: 1px solid black; height: 70px; " >
-					<div id="2" class="w3-hover-shadow w3-margin w3-padding w3-blue hover-pointer draggable" draggable="true" ondragstart="drag(event)" >
-						hey2
-					</div>
-				</div>
-
-				<div id="hold-3" class="col-sm-12 col-md-6 col-lg-3 full" ondrop="drop(event, this.id)" ondragover="allowDrop(event, this.id)" style="border: 1px solid black; height: 70px; " >
-					<div id="3" class="w3-hover-shadow w3-margin w3-padding w3-blue hover-pointer draggable" draggable="true" ondragstart="drag(event)" >
-						hey3
-					</div>
-				</div>
-
-				<div id="hold-4" class="col-sm-12 col-md-6 col-lg-3 empty" ondrop="drop(event, this.id)" ondragover="allowDrop(event, this.id)" style="border: 1px solid black; height: 70px; " >
-					<!--<div id="4" class="w3-hover-shadow w3-margin w3-padding w3-blue hover-pointer" draggable="true" ondragstart="drag(event)" >
-						
-					</div>-->
-				</div>
-				
-		  </div>
-        </div>
-      </div>
-    </div>
-  </div><!-- End content -->
+			</div>
+		</div>
+	</div>
+</div><!-- End content -->
   
-  <script type="text/javascript">
+<script type="text/javascript">
   
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
+	$("#menu-toggle").click(function(e) {
+		e.preventDefault();
+		$("#wrapper").toggleClass("toggled");
 		
-    });
+	});
 	
-	function drag(ev) {
-		ev.dataTransfer.setData("text", ev.target.id);
-		var parent_id = document.getElementById(ev.target.id).parentNode.id; 
-		document.getElementById(parent_id).classList.remove("full");
-		
+	
+	if($(document).width() < 768){
+		$('.gridly').gridly({
+			base: 60, // px 
+			gutter: 20, //px
+			columns: 4
+		}); 
 	}
-
-	function allowDrop(ev, id) {
-		if(document.getElementById(id).classList.contains("full") == false){
-			ev.preventDefault();
-			var data = ev.dataTransfer.getData("text");
-			ev.target.appendChild(document.getElementById(data));
-			
-		}		
+	else{
+		$('.gridly').gridly({
+			base: 60, // px 
+			gutter: 20, //px
+			columns: 12
+		}); 
 	}
-
-	function drop(ev, id) {
-		if(document.getElementById(id).classList.contains("full") == false){
-			ev.preventDefault();
-			var data = ev.dataTransfer.getData("text");
-			ev.target.appendChild(document.getElementById(data));
-			document.getElementById(id).classList.add("full");
-			
-		}
-	}
-	//need to make this touchable... wtf 
-	//script below does not 
-	//above is my idea of how this should work. does not work on mobile
+	
 	
 
-  
-  
-  </script>
+ </script>
   
   
  <style type="text/css">
   .gridly {
     position: relative;
-    width: 960px;
+    width: 100%;
   }
   .brick.small {
     width: 140px;
@@ -349,21 +313,7 @@ body {
     height: 300px;
 	background-color: red; 
   }
-</style>
-<div class="gridly">
-  <div class="brick small"></div>
-  <div class="brick small"></div>
-  <div class="brick large"></div>
-  <div class="brick small"></div>
-  <div class="brick small"></div>
-  <div class="brick large"></div>
-</div>
-<script>
-  $('.gridly').gridly({
-    base: 60, // px 
-    gutter: 20, // px
-    columns: 12
-  });
+ 
 </script>
 </body>
 </html>
