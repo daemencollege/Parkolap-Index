@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 
+<?php
+include("database.php"); 
+?>
+
 <html>
 <head>
   <title>Menu</title>
@@ -14,6 +18,13 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous" type="text/javascript">
 </script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js" type="text/javascript"></script>
+<script src="assets/jquery/gridly/javascripts/jquery.gridly.js" type="text/javascript"></script>
+<link href="assets/jquery/gridly/stylesheets/jquery.gridly.css" rel="stylesheet" type="text/css" />
+
   <style type="text/css">
 body {
         overflow-x: hidden;
@@ -193,11 +204,7 @@ body {
         margin-right: 0;
     }
   }
-  
-  
-	.hover-pointer:hover {
-		cursor: pointer;
-	}
+
   </style>
 </head>
 
@@ -227,7 +234,7 @@ body {
     </div>
   </nav>
 
-  <div id="wrapper">
+<div id="wrapper">
     <!-- Sidebar -->
 
     <div id="sidebar-wrapper">
@@ -247,47 +254,66 @@ body {
         </div>
       </div>
 
-      <div class="container">
-        <div class="row">
-          <div class="w3-col">
-				<div class="col-sm-12 col-md-6 col-lg-3" ondragover="event.preventDefault()">
-					<div class="w3-hover-shadow w3-margin w3-padding w3-blue hover-pointer" draggable="true" >
-						hey
-					</div>
+		<div class="container">
+			<div class="row">
+				<div class="gridly">
+					<div class="brick small col-xs-6 col-sm-3" style="left: 0; top: 0; " ></div>
+					<div class="brick small col-xs-6 col-sm-3" style="left: 480; top: 0; " ></div>
+					<div class="brick large col-xs-12 col-sm-6" style="left: 640; top: 0; " ></div>
+					<div class="brick small col-xs-6 col-sm-3" style="left: 0; top: 160; " ></div>
+					<div class="brick small col-xs-6 col-sm-3" style="left: 480; top: 160; " ></div>
+					<div class="brick large col-xs-12 col-sm-6" style="left: 160; top: 0; " ></div>
 				</div>
-
-				<div class="col-sm-12 col-md-6 col-lg-3" ondragover="event.preventDefault()">
-					<div class="w3-hover-shadow w3-margin w3-padding w3-blue hover-pointer" draggable="true">
-						hey
-					</div>
-				</div>
-
-				<div class="col-sm-12 col-md-6 col-lg-3" ondragover="event.preventDefault()">
-					<div class="w3-hover-shadow w3-margin w3-padding w3-blue hover-pointer" draggable="true">
-						hey
-					</div>
-				</div>
-
-				<div class="col-sm-12 col-md-6 col-lg-3" ondragover="event.preventDefault()">
-					<!--<div class="w3-hover-shadow w3-margin w3-padding w3-blue hover-pointer" draggable="true">
-						hey
-					</div>-->
-				</div>
-				
-		  </div>
-        </div>
-      </div>
-    </div>
-  </div><!-- End content -->
-  <script type="text/javascript">
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
+			</div>
+		</div>
+	</div>
+</div><!-- End content -->
+  
+<script type="text/javascript">
+  
+	$("#menu-toggle").click(function(e) {
+		e.preventDefault();
+		$("#wrapper").toggleClass("toggled");
+		
+	});
 	
-	function allowDrop(ev) {
-		ev.preventDefault();
+	
+	if($(document).width() < 768){
+		$('.gridly').gridly({
+			base: 60, // px 
+			gutter: 20, //px
+			columns: 4
+		}); 
 	}
-  </script>
+	else{
+		$('.gridly').gridly({
+			base: 60, // px 
+			gutter: 20, //px
+			columns: 12
+		}); 
+	}
+	
+	
+
+ </script>
+  
+  
+ <style type="text/css">
+  .gridly {
+    position: relative;
+    width: 100%;
+  }
+  .brick.small {
+    width: 140px;
+    height: 140px;
+	background-color: red; 
+  }
+  .brick.large {
+    width: 300px;
+    height: 300px;
+	background-color: red; 
+  }
+ 
+</script>
 </body>
 </html>
