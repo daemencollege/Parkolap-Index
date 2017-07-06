@@ -1,22 +1,10 @@
 <?php
+$db = mysqli_connect('localhost', 'index', 'password', 'index');
 
-$user = "index";
-$password = "password";
-$database = "index";
-$host = "localhost";
-$port = 3306;
+if (!$db ){
+	print "Did not connect to database. ";
+	
+}
 
-$db = mysqli_init();
-
-$success = mysqli_real_connect(
-	$link,
-	$host,
-	$user,
-	$password,
-	$database,
-	$port
-);
-
-print $success;
 
 ?>

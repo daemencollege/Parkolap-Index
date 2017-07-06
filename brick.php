@@ -1,6 +1,7 @@
 <?php
 include("database.php"); 
 ?>
+
 <head>
   <title>Menu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -252,26 +253,9 @@ include("database.php");
 
 		<div class="container">
 			<div class="row">
-				<div class="gridly">
-					<?php
-					$brick_info_sql = "
-						SELECT
-							*
-						FROM
-							`index`.`bricks`
-					";
-					$brick_info_query = mysqli_query($db, $brick_info_sql) or die(mysqli_error($db)); 
-					
-					while($brick_info = mysqli_fetch_assoc($brick_info_query)){
-						?>
-						<div class="brick <?php print $brick_info['size']; ?>" >
-							<b><center><a href="<?php print $brick_info['link']; ?>" target="_blank" > <?php print $brick_info['title']; ?> </a></center></b></br>
-							<?php print $brick_info['content']; ?>
-						</div>						
-						<?php
-					}
-					?>
-				</div>
+			<?php
+				include("brick_edit.php");
+			?>
 			</div>
 		</div>
 	</div>
@@ -279,51 +263,14 @@ include("database.php");
 
 
 <script type="text/javascript">
-  
 	$("#menu-toggle").click(function(e) {
 		e.preventDefault();
 		$("#wrapper").toggleClass("toggled");
 		
 	});
 	
-	
-	if($(document).width() < 768){
-		$('.gridly').gridly({
-			base: 60, // px 
-			gutter: 20, //px
-			columns: 4
-		}); 
-	}
-	else{
-		$('.gridly').gridly({
-			base: 60, // px 
-			gutter: 20, //px
-			columns: 12
-		}); 
-	}
-	
-	
+</script>
 
- </script>
-  
-  
- <style type="text/css">
-  .gridly {
-    position: relative;
-    width: 100%;
-  }
-  .brick.small {
-    width: 140px;
-    height: 140px;
-	background-color: red; 
-  }
-  .brick.large {
-    width: 300px;
-    height: 300px;
-	background-color: red; 
-  }
- 
-</style>
 </body>
 
 <?php
