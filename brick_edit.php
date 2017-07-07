@@ -60,6 +60,25 @@ option:hover {
 	background-color: none; 
 }
 
+
+
+.portrait {
+	width: 140px;
+	height: 300px; 
+}
+.landscape {
+	width: 300px; 
+	height: 140px; 
+}
+.large {
+	width: 300px; 
+	height: 300px;
+}
+.small {
+	width: 140px; 
+	height: 140px; 
+}
+
 </style>
 
 <h1> Brick Content Management </h1>
@@ -95,6 +114,8 @@ option:hover {
 				<select id="size" name="size" >
 					<option value="small" <?php if($info['size'] == "small"){ ?> selected <?php } ?> > Small </option>
 					<option value="large" <?php if($info['size'] == "large"){ ?> selected <?php } ?> > Large </option>
+					<option value="portrait" <?php if($info['size'] == "portrait"){ ?> selected <?php } ?> > Portrait </option>
+					<option value="landscape" <?php if($info['size'] == "landscape"){ ?> selected <?php } ?> > Landscape </option>
 				</select></br>
 			<b><span class="alignment"> Background Color: </span></b>
 				<select id="background_color" name="background_color" style="width: 200px; " >
@@ -124,14 +145,15 @@ option:hover {
 
 var div = document.getElementById("preview"); 
 div.style.backgroundColor = document.getElementById("background_color").value; 
+div.className += document.getElementById("size").value; 
 
-if(document.getElementById("size").value == "large"){
+/* if(document.getElementById("size").value == "large"){
 	div.style.width = "300px"; 
 	div.style.height = "300px"; 
 }
 if(document.getElementById("size").value == "small"){
 	div.style.width = "140px"; 
 	div.style.height = "140px"; 
-}
+} */
 
 </script>

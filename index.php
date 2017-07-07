@@ -200,6 +200,16 @@ include("database.php");
         margin-right: 0;
     }
   }
+  
+  
+	.portrait { 
+		width: 140px; 
+		height: 300px; 
+	}
+	.landscape { 
+		width: 300px; 
+		height: 140px; 
+	}
 
   </style>
 </head>
