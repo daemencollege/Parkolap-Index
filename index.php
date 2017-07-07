@@ -264,7 +264,7 @@ include("database.php");
 					
 					while($brick_info = mysqli_fetch_assoc($brick_info_query)){
 						?>
-						<div class="brick <?php print $brick_info['size']; ?>" >
+						<div class="brick <?php print $brick_info['size']; ?>" style="background-color: <?php print $brick_info['background_color']; ?>; " >
 							<b><center><a href="<?php print $brick_info['link']; ?>" target="_blank" > <?php print $brick_info['title']; ?> </a></center></b></br>
 							<?php print $brick_info['content']; ?>
 						</div>						
